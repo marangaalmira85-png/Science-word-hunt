@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,395 +8,1062 @@
 <title>⚡ Science Word Hunt!</title>
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
-
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    color: #38334d;
-
-    background:
-        radial-gradient(circle at 10% 10%, #fff3a6 0 45px, transparent 46px),
-        radial-gradient(circle at 90% 15%, #ffc9e8 0 55px, transparent 56px),
-        radial-gradient(circle at 15% 90%, #bcecff 0 60px, transparent 61px),
-        linear-gradient(135deg, #ded8ff, #fbdcf0, #d7f5ff);
-
-    min-height: 100vh;
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffdff3, #dff8ff, #fff4c7);
+  color: #26334a;
+  overflow-x: hidden;
 }
 
-/* HEADER */
-
-header {
-    text-align: center;
-    padding: 25px 15px 10px;
+.decor {
+  position: fixed;
+  border-radius: 50%;
+  opacity: 0.45;
+  pointer-events: none;
 }
 
-.title {
-    display: inline-block;
-
-    background: white;
-
-    padding: 12px 25px;
-
-    border-radius: 25px;
-
-    box-shadow: 0 7px 0 #aaa1dc;
-
-    transform: rotate(-1deg);
+.circle1 {
+  width: 130px;
+  height: 130px;
+  background: #ffd85c;
+  top: -35px;
+  left: -30px;
 }
 
-.title h1 {
-    margin: 0;
-
-    font-family: 'Baloo 2', cursive;
-
-    font-size: clamp(34px, 7vw, 62px);
-
-    line-height: 1;
+.circle2 {
+  width: 150px;
+  height: 150px;
+  background: #ff8fbd;
+  top: 80px;
+  right: -60px;
 }
 
-.yellow {
-    color: #efa900;
+.circle3 {
+  width: 130px;
+  height: 130px;
+  background: #52d6d0;
+  bottom: -40px;
+  left: -40px;
 }
-
-.pink {
-    color: #ed649f;
-}
-
-.purple {
-    color: #7164d5;
-}
-
-.subtitle {
-    max-width: 750px;
-
-    margin: 20px auto;
-
-    padding: 14px 20px;
-
-    background: white;
-
-    border-radius: 20px;
-
-    font-weight: 600;
-
-    box-shadow: 0 5px 18px #645b9130;
-}
-
-
-/* SCORE */
-
-.score-box {
-    position: fixed;
-
-    top: 15px;
-    right: 15px;
-
-    z-index: 20;
-
-    background: white;
-
-    padding: 10px 18px;
-
-    border-radius: 18px;
-
-    box-shadow: 0 5px 0 #aaa1dc;
-
-    font-weight: 800;
-}
-
-.score-box span {
-    color: #f0ae17;
-    font-size: 23px;
-}
-
-
-/* MAIN */
 
 .container {
-    width: min(1000px, 94%);
+  width: 94%;
+  max-width: 700px;
+  margin: auto;
+  padding: 22px 0 45px;
+}
 
-    margin: auto;
+.header {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #593b91;
+}
+
+.header p {
+  margin: 8px 0 0;
+  font-size: 0.95rem;
 }
 
 .card {
-    background: rgba(255,255,255,.88);
-
-    border: 3px solid white;
-
-    border-radius: 30px;
-
-    padding: 25px;
-
-    margin: 20px 0;
-
-    box-shadow: 0 12px 30px #62598725;
+  background: rgba(255,255,255,0.92);
+  border-radius: 24px;
+  padding: 20px;
+  margin-top: 15px;
+  box-shadow: 0 10px 30px rgba(70,50,100,0.12);
 }
 
-
-/* PROGRESS */
-
-.progress-area {
-    text-align: center;
+.progress {
+  height: 12px;
+  background: #e9e6f2;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 16px;
 }
 
-.progress-text {
-    font-weight: 800;
-
-    color: #7164d5;
-
-    font-size: 18px;
+.progressBar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #9b6cff, #ff72aa);
+  transition: width 0.4s;
 }
 
-.progress-bar {
-    height: 14px;
-
-    background: #e8e3f8;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    margin-top: 8px;
-}
-
-.progress-fill {
-    height: 100%;
-
-    width: 0%;
-
-    background: linear-gradient(
-        90deg,
-        #8a7de0,
-        #ef78ad,
-        #f5c95d
-    );
-
-    transition: .4s;
-}
-
-
-/* QUESTION */
-
-.question-box {
-    background: #fff8cf;
-
-    border-radius: 22px;
-
-    padding: 20px;
-
-    margin-top: 20px;
-
-    border: 3px dashed #efc94b;
-}
-
-.question-number {
-    font-weight: 800;
-
-    color: #ef9f00;
+.questionNumber {
+  text-align: center;
+  font-weight: bold;
+  color: #8757c7;
+  margin-bottom: 8px;
 }
 
 .question {
-    font-size: 20px;
-
-    font-weight: 700;
-
-    line-height: 1.5;
-
-    margin: 8px 0 0;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  font-weight: bold;
+  text-align: center;
 }
 
-
-/* WORD SEARCH */
-
-.word-search-wrapper {
-    display: flex;
-
-    justify-content: center;
-
-    margin-top: 25px;
+.instruction {
+  text-align: center;
+  font-size: 0.9rem;
+  margin: 10px 0 15px;
+  color: #657083;
 }
 
-.word-grid {
-    display: grid;
-
-    grid-template-columns: repeat(15, 1fr);
-
-    gap: 4px;
-
-    width: min(650px, 96vw);
-
-    aspect-ratio: 1 / 1;
-
-    background: #cfc8ee;
-
-    padding: 7px;
-
-    border-radius: 20px;
-
-    user-select: none;
-
-    touch-action: none;
-
-    box-shadow:
-        0 8px 0 #aaa1dc,
-        0 15px 30px #5f568d30;
+.grid {
+  width: min(92vw, 560px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  gap: 3px;
+  user-select: none;
+  touch-action: none;
 }
 
 .cell {
-    background: white;
-
-    border-radius: 7px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-weight: 800;
-
-    font-size: clamp(10px, 2.6vw, 19px);
-
-    color: #514a6e;
-
-    cursor: pointer;
-
-    transition: .12s;
-
-    position: relative;
-}
-
-.cell:hover {
-    background: #f2efff;
-
-    transform: scale(1.08);
-
-    z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f2ff;
+  border-radius: 7px;
+  font-weight: bold;
+  font-size: clamp(10px, 3.5vw, 20px);
+  color: #4d5265;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.15s;
 }
 
 .cell.selected {
-    background: #ffd56f;
-
-    color: #51431d;
-
-    transform: scale(1.08);
-
-    z-index: 3;
+  background: #ffd45e;
+  color: #493500;
+  transform: scale(1.03);
 }
 
-.cell.correct {
-    background: #79dc9b;
-
-    color: white;
-
-    transform: scale(1.05);
-
-    animation: correctPop .35s ease;
+.cell.found {
+  background: #7de2bb;
+  color: #124d39;
+  border-color: #3fbd91;
 }
 
-@keyframes correctPop {
+.wordBankTitle {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #593b91;
+}
 
-    0% {
-        transform: scale(.7);
+.wordBank {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.word {
+  padding: 7px 10px;
+  background: #eee8ff;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: bold;
+}
+
+.word.done {
+  background: #b9f3dc;
+  text-decoration: line-through;
+  color: #26755c;
+}
+
+.message {
+  min-height: 30px;
+  text-align: center;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.nextBtn,
+.startBtn,
+.restartBtn {
+  display: block;
+  margin: 18px auto 0;
+  border: none;
+  border-radius: 30px;
+  padding: 13px 25px;
+  background: linear-gradient(135deg, #805ad5, #ed65a8);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 7px 18px rgba(120,80,180,0.25);
+}
+
+.nextBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.startScreen,
+.endScreen {
+  text-align: center;
+}
+
+.bigEmoji {
+  font-size: 4rem;
+}
+
+.endScreen h2 {
+  color: #6b43a3;
+}
+
+.score {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+.smallNote {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #7c8190;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="decor circle1"></div>
+<div class="decor circle2"></div>
+<div class="decor circle3"></div>
+
+<div class="container">
+
+  <div class="header">
+    <h1>⚡ Science Word Hunt 🔎</h1>
+    <p>Conductors • Insulators • Simple Circuits</p>
+  </div>
+
+  <div id="startScreen" class="card startScreen">
+    <div class="bigEmoji">🔋💡⚡</div>
+
+    <h2>Ready, Scientist?</h2>
+
+    <p>
+      Read each question carefully, then find the
+      correct answer hidden in the letter box!
+    </p>
+
+    <p>
+      👆 Drag your finger from the first letter to the last letter.
+    </p>
+
+    <button class="startBtn" onclick="startGame()">
+      🚀 START THE WORD HUNT
+    </button>
+  </div>
+
+  <div id="gameScreen" class="card hidden">
+
+    <div class="progress">
+      <div id="progressBar" class="progressBar"></div>
+    </div>
+
+    <div id="questionNumber" class="questionNumber">
+      Question 1 of 10
+    </div>
+
+    <div id="question" class="question"></div>
+
+    <div class="instruction">
+      🔎 Find the answer in the box below!
+    </div>
+
+    <div id="grid" class="grid"></div>
+
+    <div class="wordBankTitle">
+      🧩 Answer Bank
+    </div>
+
+    <div id="wordBank" class="wordBank"></div>
+
+    <div id="message" class="message"></div>
+
+    <button id="nextBtn" class="nextBtn" disabled onclick="nextQuestion()">
+      Next Question ➜
+    </button>
+
+    <div class="smallNote">
+      Tip: You can find words horizontally, vertically, or diagonally!
+    </div>
+
+  </div>
+
+  <div id="endScreen" class="card endScreen hidden">
+
+    <div class="bigEmoji">🎉🏆🎉</div>
+
+    <h2>Science Word Hunt Complete!</h2>
+
+    <p>You finished all 10 questions!</p>
+
+    <div id="finalScore" class="score"></div>
+
+    <p>
+      ⚡ Great job, little scientist! 🔬
+    </p>
+
+    <button class="restartBtn" onclick="location.reload()">
+      🔄 PLAY AGAIN
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+/* =========================
+   QUESTIONS AND ANSWERS
+========================= */
+
+const questions = [
+  {
+    q: "What component of a simple circuit provides the electrical energy needed to light a bulb?",
+    a: "BATTERY"
+  },
+
+  {
+    q: "Is a metal paper clip a conductor or an insulator?",
+    a: "CONDUCTOR"
+  },
+
+  {
+    q: "What do we call a material that DOES NOT allow electric current to pass through it?",
+    a: "INSULATOR"
+  },
+
+  {
+    q: "If you place a plastic ruler in a gap in a simple circuit, will the light bulb turn ON or stay OFF?",
+    a: "STAYOFF"
+  },
+
+  {
+    q: "What type of material allows electric current to flow through it easily?",
+    a: "CONDUCTOR"
+  },
+
+  {
+    q: "Which material from your classroom—a wooden pencil, a copper wire, or a rubber eraser—will make a light bulb glow when connected in a circuit?",
+    a: "COPPERWIRE"
+  },
+
+  {
+    q: "Why are electrical wires covered with plastic or rubber on the outside?",
+    a: "PROTECT"
+  },
+
+  {
+    q: "You tested a leaf from the garden in your circuit and the bulb did not light up. Is the leaf a conductor or an insulator?",
+    a: "INSULATOR"
+  },
+
+  {
+    q: "To make a simple circuit complete and work, should the circuit path be OPEN or CLOSED?",
+    a: "CLOSED"
+  },
+
+  {
+    q: "Name one object from the environment that is a good conductor of electricity.",
+    a: "IRONNAIL"
+  }
+];
+
+
+/* =========================
+   WORD SEARCH SETUP
+========================= */
+
+const SIZE = 14;
+
+const placements = [
+  { word:"BATTERY", row:13, col:2, dr:0, dc:1 },
+
+  { word:"CONDUCTOR", row:5, col:9, dr:1, dc:0 },
+
+  { word:"INSULATOR", row:3, col:0, dr:1, dc:1 },
+
+  { word:"STAYOFF", row:11, col:7, dr:0, dc:-1 },
+
+  { word:"CONDUCTOR", row:0, col:8, dr:1, dc:-1 },
+
+  { word:"COPPERWIRE", row:11, col:10, dr:-1, dc:0 },
+
+  { word:"PROTECT", row:7, col:3, dr:-1, dc:1 },
+
+  { word:"INSULATOR", row:12, col:0, dr:0, dc:1 },
+
+  { word:"CLOSED", row:1, col:5, dr:1, dc:-1 },
+
+  { word:"IRONNAIL", row:1, col:0, dr:1, dc:1 }
+];
+
+let gridLetters = [];
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let selectedCells = [];
+
+let isDragging = false;
+
+let foundPlacements = [];
+
+let currentPlacementFound = false;
+
+
+/* =========================
+   MAKE THE LETTER GRID
+========================= */
+
+function createGrid() {
+
+  gridLetters = [];
+
+  for (let r = 0; r < SIZE; r++) {
+
+    gridLetters[r] = [];
+
+    for (let c = 0; c < SIZE; c++) {
+
+      gridLetters[r][c] = randomLetter();
+
+    }
+  }
+
+
+  placements.forEach(place => {
+
+    for (let i = 0; i < place.word.length; i++) {
+
+      let r = place.row + place.dr * i;
+
+      let c = place.col + place.dc * i;
+
+      gridLetters[r][c] = place.word[i];
+
     }
 
-    70% {
-        transform: scale(1.15);
+  });
+
+}
+
+
+/* =========================
+   RANDOM LETTER
+========================= */
+
+function randomLetter() {
+
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  return letters[Math.floor(Math.random() * letters.length)];
+
+}
+
+
+/* =========================
+   DISPLAY GRID
+========================= */
+
+function displayGrid() {
+
+  const grid = document.getElementById("grid");
+
+  grid.innerHTML = "";
+
+  for (let r = 0; r < SIZE; r++) {
+
+    for (let c = 0; c < SIZE; c++) {
+
+      const cell = document.createElement("div");
+
+      cell.className = "cell";
+
+      cell.textContent = gridLetters[r][c];
+
+      cell.dataset.row = r;
+
+      cell.dataset.col = c;
+
+      grid.appendChild(cell);
+
     }
 
-    100% {
-        transform: scale(1);
+  }
+
+  setupTouchControls();
+
+}
+
+
+/* =========================
+   DISPLAY QUESTION
+========================= */
+
+function displayQuestion() {
+
+  const data = questions[currentQuestion];
+
+  document.getElementById("questionNumber").textContent =
+    "Question " + (currentQuestion + 1) + " of " + questions.length;
+
+  document.getElementById("question").textContent = data.q;
+
+  document.getElementById("progressBar").style.width =
+    ((currentQuestion) / questions.length * 100) + "%";
+
+  document.getElementById("message").textContent = "";
+
+  document.getElementById("nextBtn").disabled = true;
+
+  currentPlacementFound = false;
+
+  selectedCells = [];
+
+  displayGrid();
+
+  displayWordBank();
+
+}
+
+
+/* =========================
+   WORD BANK
+========================= */
+
+function displayWordBank() {
+
+  const bank = document.getElementById("wordBank");
+
+  bank.innerHTML = "";
+
+  questions.forEach((item, index) => {
+
+    const span = document.createElement("span");
+
+    span.className = "word";
+
+    if (foundPlacements.includes(index)) {
+
+      span.classList.add("done");
+
     }
 
+    let displayWord = item.a;
+
+    if (displayWord === "STAYOFF") {
+
+      displayWord = "STAY OFF";
+
+    }
+
+    if (displayWord === "COPPERWIRE") {
+
+      displayWord = "COPPER WIRE";
+
+    }
+
+    if (displayWord === "IRONNAIL") {
+
+      displayWord = "IRON NAIL";
+
+    }
+
+    span.textContent = displayWord;
+
+    bank.appendChild(span);
+
+  });
+
 }
 
 
-/* INSTRUCTION */
+/* =========================
+   GET CELL
+========================= */
 
-.instruction {
-    text-align: center;
+function getCellFromPoint(x, y) {
 
-    margin-top: 20px;
+  const element = document.elementFromPoint(x, y);
 
-    padding: 15px;
+  if (!element || !element.classList.contains("cell")) {
 
-    background: #f1edff;
+    return null;
 
-    border-radius: 18px;
+  }
 
-    font-weight: 600;
-}
+  return {
 
-.instruction span {
-    color: #ed649f;
-}
+    row: Number(element.dataset.row),
 
+    col: Number(element.dataset.col),
 
-/* BUTTON */
+    element: element
 
-.button-area {
-    text-align: center;
+  };
 
-    margin-top: 20px;
-}
-
-button {
-    border: none;
-
-    border-radius: 18px;
-
-    padding: 13px 24px;
-
-    font-family: inherit;
-
-    font-weight: 800;
-
-    color: white;
-
-    background: #7467d6;
-
-    box-shadow: 0 5px 0 #5148a9;
-
-    cursor: pointer;
-
-    margin: 5px;
-
-    transition: .15s;
-}
-
-button:hover {
-    transform: translateY(-3px);
-}
-
-button:active {
-    transform: translateY(3px);
-
-    box-shadow: 0 2px 0 #5148a9;
-}
-
-.reset-button {
-    background: #ed679f;
-
-    box-shadow: 0 5px 0 #b64b78;
 }
 
 
-/* FOUND WORD */
+/* =========================
+   START DRAG
+========================= */
 
-.found-word {
-    text-align: center;
+function startSelection(e) {
 
-    margin-top: 20px;
+  e.preventDefault();
 
-    font-weight: 800;
+  const point = e.touches ? e.touches[0] : e;
 
-    min-height: 30px;
+  const cell = getCellFromPoint(point.clientX, point.clientY);
+
+  if (!cell) return;
+
+  isDragging = true;
+
+  selectedCells = [cell];
+
+  clearSelection();
+
+  cell.element.classList.add("selected");
+
 }
 
-.found-word stro
+
+/* =========================
+   MOVE DRAG
+========================= */
+
+function moveSelection(e) {
+
+  if (!isDragging) return;
+
+  e.preventDefault();
+
+  const point = e.touches ? e.touches[0] : e;
+
+  const end = getCellFromPoint(point.clientX, point.clientY);
+
+  if (!end) return;
+
+  const start = selectedCells[0];
+
+  const cells = getLine(
+    start.row,
+    start.col,
+    end.row,
+    end.col
+  );
+
+  if (!cells) return;
+
+  clearSelection();
+
+  selectedCells = [];
+
+  cells.forEach(pos => {
+
+    const cell = document.querySelector(
+      `.cell[data-row="${pos.row}"][data-col="${pos.col}"]`
+    );
+
+    if (cell) {
+
+      cell.classList.add("selected");
+
+      selectedCells.push({
+        row: pos.row,
+        col: pos.col,
+        element: cell
+      });
+
+    }
+
+  });
+
+}
+
+
+/* =========================
+   END DRAG
+========================= */
+
+function endSelection(e) {
+
+  if (!isDragging) return;
+
+  isDragging = false;
+
+  checkAnswer();
+
+}
+
+
+/* =========================
+   GET STRAIGHT LINE
+========================= */
+
+function getLine(r1, c1, r2, c2) {
+
+  const dr = r2 - r1;
+
+  const dc = c2 - c1;
+
+  const length = Math.max(
+    Math.abs(dr),
+    Math.abs(dc)
+  );
+
+  if (length === 0) {
+
+    return [
+      {
+        row: r1,
+        col: c1
+      }
+    ];
+
+  }
+
+  if (
+    dr !== 0 &&
+    dc !== 0 &&
+    Math.abs(dr) !== Math.abs(dc)
+  ) {
+
+    return null;
+
+  }
+
+  const stepR = dr === 0 ? 0 : dr / Math.abs(dr);
+
+  const stepC = dc === 0 ? 0 : dc / Math.abs(dc);
+
+  const result = [];
+
+  for (let i = 0; i <= length; i++) {
+
+    result.push({
+      row: r1 + stepR * i,
+      col: c1 + stepC * i
+    });
+
+  }
+
+  return result;
+
+}
+
+
+/* =========================
+   CHECK ANSWER
+========================= */
+
+function checkAnswer() {
+
+  if (selectedCells.length < 2) {
+
+    clearSelection();
+
+    return;
+
+  }
+
+  let selectedWord = "";
+
+  selectedCells.forEach(cell => {
+
+    selectedWord += gridLetters[cell.row][cell.col];
+
+  });
+
+  const reversed = selectedWord
+    .split("")
+    .reverse()
+    .join("");
+
+  const answer = questions[currentQuestion].a;
+
+  if (
+    selectedWord === answer ||
+    reversed === answer
+  ) {
+
+    let matchingPlacement = findMatchingPlacement(answer);
+
+    if (matchingPlacement !== null) {
+
+      foundPlacements.push(currentQuestion);
+
+      selectedCells.forEach(cell => {
+
+        cell.element.classList.remove("selected");
+
+        cell.element.classList.add("found");
+
+      });
+
+      score++;
+
+      currentPlacementFound = true;
+
+      document.getElementById("message").textContent =
+        "🎉 CORRECT! You found " + formatAnswer(answer) + "!";
+
+      document.getElementById("message").style.color =
+        "#238b68";
+
+      document.getElementById("nextBtn").disabled = false;
+
+      displayWordBank();
+
+    } else {
+
+      wrongAnswer();
+
+    }
+
+  } else {
+
+    wrongAnswer();
+
+  }
+
+}
+
+
+/* =========================
+   FIND WORD PLACEMENT
+========================= */
+
+function findMatchingPlacement(answer) {
+
+  for (let i = 0; i < placements.length; i++) {
+
+    const place = placements[i];
+
+    if (place.word !== answer) continue;
+
+    if (foundPlacements.includes(i)) continue;
+
+    return i;
+
+  }
+
+  return null;
+
+}
+
+
+/* =========================
+   WRONG ANSWER
+========================= */
+
+function wrongAnswer() {
+
+  document.getElementById("message").textContent =
+    "❌ Not quite! Try finding the correct answer.";
+
+  document.getElementById("message").style.color =
+    "#e35b72";
+
+  clearSelection();
+
+}
+
+
+/* =========================
+   CLEAR SELECTION
+========================= */
+
+function clearSelection() {
+
+  document.querySelectorAll(".cell.selected")
+    .forEach(cell => {
+
+      cell.classList.remove("selected");
+
+    });
+
+}
+
+
+/* =========================
+   FORMAT ANSWER
+========================= */
+
+function formatAnswer(word) {
+
+  const special = {
+    STAYOFF: "STAY OFF",
+    COPPERWIRE: "COPPER WIRE",
+    IRONNAIL: "IRON NAIL"
+  };
+
+  return special[word] || word;
+
+}
+
+
+/* =========================
+   TOUCH CONTROLS
+========================= */
+
+function setupTouchControls() {
+
+  const grid = document.getElementById("grid");
+
+  grid.addEventListener(
+    "touchstart",
+    startSelection,
+    { passive: false }
+  );
+
+  grid.addEventListener(
+    "touchmove",
+    moveSelection,
+    { passive: false }
+  );
+
+  grid.addEventListener(
+    "touchend",
+    endSelection,
+    { passive: false }
+  );
+
+
+  grid.addEventListener(
+    "mousedown",
+    startSelection
+  );
+
+  grid.addEventListener(
+    "mousemove",
+    moveSelection
+  );
+
+  grid.addEventListener(
+    "mouseup",
+    endSelection
+  );
+
+}
+
+
+/* =========================
+   START GAME
+========================= */
+
+function startGame() {
+
+  document.getElementById("startScreen")
+    .classList.add("hidden");
+
+  document.getElementById("gameScreen")
+    .classList.remove("hidden");
+
+  createGrid();
+
+  currentQuestion = 0;
+
+  score = 0;
+
+  foundPlacements = [];
+
+  displayQuestion();
+
+}
+
+
+/* =========================
+   NEXT QUESTION
+========================= */
+
+function nextQuestion() {
+
+  if (!currentPlacementFound) return;
+
+  currentQuestion++;
+
+  if (currentQuestion >= questions.length) {
+
+    finishGame();
+
+    return;
+
+  }
+
+  displayQuestion();
+
+}
+
+
+/* =========================
+   FINISH GAME
+========================= */
+
+function finishGame() {
+
+  document.getElementById("gameScreen")
+    .classList.add("hidden");
+
+  document.getElementById("endScreen")
+    .classList.remove("hidden");
+
+  document.getElementById("finalScore").textContent =
+    "⭐ Your score: " +
+    score +
+    " / " +
+    questions.length;
+
+}
+
+
+/* =========================
+   PREVENT ACCIDENTAL SCROLL
+========================= */
+
+document.addEventListener(
+  "touchmove",
+  function(e) {
+
+    if (isDragging) {
+
+      e.preventDefault();
+
+    }
+
+  },
+  { passive: false }
+);
+
+</script>
+
+</body>
+</html>
